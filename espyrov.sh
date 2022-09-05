@@ -33,11 +33,12 @@ function _fn_echoverb {
 # Warn if the script was run by user root
 function _fn_check_root {
     if [ "$EUID" -eq 0 ]
-        then _fn_echoverb 2 "You are running this script as root!"
+        then _fn_echoverb 2 "You are not supposed to be running this script as root!"
         exit 1
     fi
 }
 
+# Flash the binary firmware
 function _fn_flash_fw {
     if [ -f "$_FW_FILE" ]
     then
@@ -68,6 +69,7 @@ function _fn_flash_fw {
     fi
 }
 
+# Upload the configuration files containing the credentials
 function _fn_upload {
     if [ -z `hash rshell` ]
     then
@@ -76,9 +78,7 @@ function _fn_upload {
         echo "PASS = '$_WREPL_PW'" > webrepl_cfg.py
         _fn_echoverb 1 "Uploading config files"
         sleep 5
-        echo "Pollo"
         rshell -p $_DEVICE -b 115200 cp webrepl_cfg.py /pyboard
-        echo "Arrosto"
         rshell -p $_DEVICE -b 115200 cp boot.py /pyboard
         rm webrepl_cfg.py
     else

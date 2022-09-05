@@ -1,6 +1,6 @@
 # ESP Python Provision
 
-This script automates the provisioning process of an ESP devices with MicroPython flashing and credentials generation procedures.
+This script automates the provisioning process of an ESP device with MicroPython flashing and credentials generation procedures.
 
 You will end up with a fresh ROM on your device, along with WebREPL enabled with a random 9 char password and WiFi credentials installed: the board will turn on the STATION interface, trying to connect to the provided access point; however, the ACCESSPOINT interface will be on by default.
 
@@ -37,13 +37,13 @@ To run the script just issue this command, in the following flavour
 ```bash
 ./espyrov.sh -d /dev/ttyUSB0 -f ../esp8266.bin -l
 ```
-In that way you are telling `esptool` to look for a serial adapter on /dev/ttyUSB0 and to flash the firmware called esp8266.bin (which is in the parent directory); also, you are asking the script for the maximum verbosity (-l) and finally the script defaults to provision ESP8266 boards (use the *-t 32* option to specify you are using an ESP32 device)
+In that way you are telling `esptool` to look for a serial adapter on /dev/ttyUSB0 and to flash the firmware called esp8266.bin (which is in the parent directory); also, you are asking the script for the maximum verbosity (-l) and finally the script defaults to provision ESP8266 boards (use the *-t 32* option to specify you are using an ESP32 device).
 
 ## The WebREPL
 
 ### Configure the WiFi credentials
 
-At the moment to provide the access point credentials the ESP will connect to, you must edit the global variables into the file `boot.py`, before running this script.
+At the moment to provide the access point credentials the ESP will connect to, you must edit the global variables SSID and PASS inside the file `boot.py`, before running this script.
 
 ### Accesing the WebREPL
 
@@ -55,7 +55,7 @@ You only need to provide the IP address of your ESP on the network (the port wil
 
 To connect to your ESP via cable, either for debugging or better convenience, you can use the *picocom* or the *screen* tools: they are available from all major software repositories, and to work they just need a block device and a baud rate (the serial communication speed, on an ESP device will default to 115200).
 
-For example, you wild connect to your device via USB using *picocom* through the following command:
+For example, you would connect to your device via USB using *picocom* through the following command:
 ```bash
 picocom /dev/ttyUSB0 -b 115200
 ```

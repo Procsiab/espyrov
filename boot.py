@@ -5,8 +5,8 @@ import network
 
 webrepl.start()
 
-SSID = "uaifai"
-PASS = "gimmedat"
+SSID = "My ESP AP"
+PASS = "keepmesecret"
 
 sta_if = network.WLAN(network.STA_IF)
 sta_if.active(True)
